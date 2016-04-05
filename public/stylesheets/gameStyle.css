@@ -1,0 +1,66 @@
+body {
+background: aliceblue; 
+}
+#map {
+width: 1000px;
+}
+#map-div {
+display: flex;
+justify-content: center;
+position: relative;
+}
+#page-head {
+width: 100%; 
+height: 100px; 
+background: white;  
+}
+#main-head {
+background: black; 
+color: white; 
+font-size: 65px;
+text-align: center; 
+}
+.stats {
+height: 100px;
+border: solid; 
+text-align: center; 
+}
+h1 {
+margin-top: 12px;
+font-size: 36px;
+}
+#overlay-div {
+display: none; 
+position: fixed; 
+background: black;
+z-index: 10; 
+opacity: .5; 
+top: 0; 
+right: 0; 
+left: 0; 
+bottom: 0; 
+}
+#contain {
+display: none; 
+width: 100%;
+height: 100%;
+position: absolute; 
+z-index: 12; 
+text-align: center; 
+}
+#popup {
+display: none; 
+z-index: 15; 
+position: relative;
+background: blue; 
+opacity: .8; 
+height: 300px;
+width: 300px; 
+color: white; 
+font-family: "Helvetica Nueue"; 
+text-align: center; 
+padding: 5px;
+}
+#globe-pic {
+width: 80px;
+}
