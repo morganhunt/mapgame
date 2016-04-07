@@ -205,12 +205,12 @@ function drop (toDisplay)
 		.append(toDisplay);  
 }
 
-function winner()
+function winner() //CALL PUT POINTS HERE 
 {
 	alert("you win"); 
 }
 
-function loser()
+function loser() //CALL PUT POINTS HERE 
 {
 	alert("you lose"); 
 }
