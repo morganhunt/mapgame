@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>World Map Game</title>
+	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
+	<script src="javascripts/gameScript.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<link rel="stylesheet" href="stylesheets/gameStyle.css">
+</head>
+<body ng-app="game" ng-controller="mainCtrl">
+<div class="container" id="overlay-div"></div>
+<div id="contain">
+	<div id="popup" ng-click="hidePopup()">
+	</div>
+</div>
+<div class="container" id="page-head">
+	<div class="row">
+		<div class="col-md-3 stats">
+			<h1 class="tabHeads">Level</h1>
+			<span>{{curLevel}}</span>
+		</div>
+		<div class="col-md-3 stats">
+			<h1 class="tabHeads">Points</h1>
+			<span>{{curPoints}}</span>
+		</div>
+		<div class="col-md-3 stats">
+			<h1 class="tabHeads">Chances Left</h1>
+			<span>{{trysLeft}}</span>
+		</div>
+		<div class="col-md-3 stats">
+			<h1 class="tabHeads">Find</h1>
+			<span>{{curToFind}}</span>
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div id="map-div">
+	<img id="map"  src="http://wiki.alternatehistory.com/lib/exe/fetch.php/blank_map_directory/basemap.png" ng-click="mapClick($event)">
+	</div>
+</div>
+<link rel="stylesheet" href="stylesheets/gameStyle.css">
+</body>
+</html>
