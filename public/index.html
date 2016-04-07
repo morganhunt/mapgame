@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>The Map Game</title>
+	<link rel="stylesheet" type="text/css" href="stylesheets/index.css">
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
+	<script src="javascripts/app.js"></script>
+</head>
+<body>
+	<div ng-app="app" ng-controller="loginCtrl" id="overlay">
+		<div>
+			<div id="loginScreen">
+				<h1>Play the Map Game</h1>
+				<p>See how well you know the world's countries</p>
+				<form>
+					<input type="text" ng-model="playername" placeholder="Enter your name to play">
+					<button ng-click="addName()" onClick="parent.location='game.html'">Start Game!</button>
+				</form>
+			</div>
+		</div>
+	
+
+
+
+
+
+
+
+	</div>
+</body>
+</html>
