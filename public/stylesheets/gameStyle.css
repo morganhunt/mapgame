@@ -1,0 +1,77 @@
+body {
+background: #668FA3; 
+}
+#map {
+width: 1000px;
+}
+#map-div {
+display: flex;
+justify-content: center;
+position: relative;
+}
+#page-head {
+width: 100%; 
+height: 100px; 
+background: white;  
+}
+#main-head {
+background: black; 
+color: white; 
+font-size: 65px;
+text-align: center; 
+}
+.stats {
+height: 100px;
+border: solid; 
+text-align: center; 
+}
+h1 {
+margin-top: 12px;
+font-size: 36px;
+}
+#overlay-div { 
+position: fixed; 
+background: black;
+z-index: 10; 
+opacity: .5; 
+top: 0; 
+right: 0; 
+left: 0; 
+bottom: 0; 
+}
+#contain { 
+width: 100%;
+height: 100%;
+position: absolute; 
+z-index: 12; 
+text-align: center; 
+}
+#popup { 
+z-index: 15; 
+position: relative;
+background: black; 
+opacity: .9; 
+height: 400px;
+width: 400px; 
+color: white; 
+font-family: "Gill Sans"; 
+text-align: center; 
+padding: 5px;
+left: 352px; 
+top: 100px;
+border-radius: 50%;
+/*background: radial-gradient(circle at 100px 100px, #41FFB3, #000);*/ 
+padding-top: 150px;
+}
+#globe-pic {
+width: 80px;
+}
+.levelHeaders {
+font-family "Gill Sans";
+font-weight: bold;
+font-size: 51px;
+}
+.tabHeads {
+background: black;  
+color: white; 
+}
