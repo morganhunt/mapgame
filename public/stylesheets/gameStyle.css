@@ -75,3 +75,18 @@ font-size: 51px;
 background: black;  
 color: white; 
 }
+#contain2 {
+display: none; 
+height: 100px; 
+width: 100%;
+position: fixed; 
+z-index: 20; 
+background: red; 
+color: white; 
+font-family: "Gill Sans";
+text-align: center; 
+font-size: 40px; 
+}
+p {
+font-size: 20px;
+}

@@ -10,24 +10,67 @@ var points = 0;
 var level = 1; 
 var trys = 6; 
 var curCountry; 
+var gameStart = true;
+var levelPoints = 0;   
 
-var levelOne = [
-	{Name: "United States of America",Played:false}, 
-	{Name: "Australia",Played:false}, 
-	{Name: "China",Played:false}, 
-	{Name: "Brazil",Played:false}, 
-	{Name: "Russian Federation",Played:false}
+var countryList = [
+	[],
+	//LEVEL ONE 
+	[
+		{Name:"United States of America",Played:false}, 
+		{Name:"Australia",Played:false}, 
+		{Name:"China",Played:false}, 
+		{Name:"Brazil",Played:false}, 
+		{Name:"Russian Federation",Played:false}, 
+		{Name:"Canada",Played:false}, 
+		{Name:"Greenland",Played:false}
+	], 
+	//LEVEL TWO 
+	[
+		{Name:"India",Played:false}, 
+		{Name:"Egypt",Played:false},
+		{Name:"Argentina",Played:false},
+		{Name:"Spain",Played:false},
+		{Name:"France",Played:false},
+		{Name:"Mexico",Played:false},
+		{Name:"United Kingdom",Played:false}
+	],
+	//LEVEL THREE
+	[
+		{Name:"Saudi Arabia",Played:false}, 
+		{Name:"Peru",Played:false},
+		{Name:"Mongolia",Played:false},
+		{Name:"Chile",Played:false},
+		{Name:"Norway",Played:false},
+		{Name:"Italy",Played:false},
+		{Name:"Turkey",Played:false}
+	], 
+	//LEVEL FOUR
+	[
+		{Name:"Kazackhastan",Played:false},
+		{Name:"Finland",Played:false},
+		{Name:"Sweden",Played:false},
+		{Name:"Indonesia",Played:false},
+		{Name:"Morocco",Played:false},
+		{Name:"Libya",Played:false},
+		{Name:"Algeria",Played:false}
+	], 
+	//LEVEL FIVE 
+	[
+		{Name:"Pakistan",Played:false}, 
+		{Name:"Afghanistan",Played:false},
+		{Name:"Islamic Republic of Iran",Played:false}, 
+		{Name:"Myanmar",Played:false},
+		{Name:"Bolivia",Played:false}, 
+		{Name:"Sudan",Played:false}, 
+		{Name:"Ethiopia",Played:false}
+	]
 ]; 
-
+	
 
 function mainCtrl ($scope)
 {
-	$("#popup").append(open); 
-	$scope.curLevel = level; 
-	$scope.curPoints = points; 
-	$scope.trysLeft = trys; 
-	countrySelect(); 
-	$scope.curToFind = curCountry["Name"];   
+	$("#popup").append(open);    
 	$scope.mapClick = function (eventInfo)
 	{ 
 		var offset = $("#map").offset();
@@ -41,6 +84,18 @@ function mainCtrl ($scope)
 	}
 	$scope.hidePopup = function ()
 	{ 
+		if (gameStart == true)
+		{
+			countrySelect(); 
+			$scope.curLevel = level; 
+			$scope.curPoints = points;
+			$scope.trysLeft = trys;  
+			$scope.curToFind = curCountry["Name"];  
+		}
+		else 
+		{
+			location.reload(); 
+		}
 		$("#popup").slideToggle(); 
 		$("#contain").slideToggle(); 
 		$("#overlay-div").slideToggle();
@@ -52,12 +107,14 @@ function countrySelect()
 	var checked = true; 
 	var index = 0; 
 	while (checked == true)
-	{   	
-		index = Math.floor(Math.random() * 5);
-		curCountry = levelOne[index];
-		checked = curCountry["Played"]; 
+	{
+		index = Math.floor(Math.random() * 7);
+		curCountry = countryList[level][index]; 
+		checked = curCountry["Played"];
 	}
-	levelOne[index]["Played"] = true; 
+	countryList[level][index]["Played"] = true; 
+	var toDisplay = "<h1>Locate " + curCountry["Name"] + "</h1>"; 
+	displayCountry(toDisplay);   
 }
 
 function convertToLong(x)
@@ -133,6 +190,7 @@ function checkAndUpdate(selection, $scope)
 	$scope.$apply(function () {
 	if (selection == curCountry["Name"])
 	{
+		levelPoints++; 
 		addPoint();
 		correct(selection);   	
 	}
@@ -143,9 +201,10 @@ function checkAndUpdate(selection, $scope)
 	}
 	$scope.curPoints = points; 
 	$scope.trysLeft = trys; 
-	if (points == (level / 5))
+	if (levelPoints == 5)
 	{
-		level++;
+		levelPoints = 0; 
+		level++; 
 		if (level == 6)
 		{
 			winner(); 
@@ -154,9 +213,7 @@ function checkAndUpdate(selection, $scope)
 	else if (trys == 0)
 	{
 		loser(); 
-	}
-	countrySelect(); 
-	$scope.curToFind = curCountry["Name"]; 
+	} 
 	});
 }
 
@@ -168,7 +225,7 @@ function correct(selection)
 
 function incorrect(selection, $scope)
 {
-	var message = "<h1 class='levelHeaders'>Sorry!</h1><p>You picked " + selection + ", but we were looking for " + curCountry + "!</p>"; 
+	var message = "<h1 class='levelHeaders'>Sorry!</h1><p>You picked " + selection + ", but we were looking for " + curCountry["Name"] + "!</p>"; 
 	drop(message); 
 }
 
@@ -205,12 +262,23 @@ function drop (toDisplay)
 		.append(toDisplay);  
 }
 
+function displayCountry (toDisplay)
+{
+	$("#contain2").empty();  
+	$("#contain2").append(toDisplay); 
+	$("#contain2").fadeIn(250).delay(750).fadeOut(750);
+}
+
 function winner() //CALL PUT POINTS HERE 
 {
-	alert("you win"); 
+	var message = "<h1>Congratulations!</h1><p>You are a geography wiz! You won with a whopping " + points + " points!</p>"; 
+	gameStart = false; 
+	drop(message); 
 }
 
 function loser() //CALL PUT POINTS HERE 
 {
-	alert("you lose"); 
+	var message = "<h1>Participation Award</h1><p>Despite a valiant effort you still do not have what it takes to be considered a geography master. " + points + " points isn't bad though...Keep at it!</p>"; 
+	gameStart = false;
+	drop(message);  
 }
