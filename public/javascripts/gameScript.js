@@ -11,7 +11,8 @@ var level = 1;
 var trys = 6; 
 var curCountry; 
 var gameStart = true;
-var levelPoints = 0;   
+var levelPoints = 0; 
+var canClick = true;   
 
 var countryList = [
 	[],
@@ -40,14 +41,13 @@ var countryList = [
 		{Name:"Saudi Arabia",Played:false}, 
 		{Name:"Peru",Played:false},
 		{Name:"Mongolia",Played:false},
-		{Name:"Chile",Played:false},
 		{Name:"Norway",Played:false},
 		{Name:"Italy",Played:false},
 		{Name:"Turkey",Played:false}
 	], 
 	//LEVEL FOUR
 	[
-		{Name:"Kazackhastan",Played:false},
+		{Name:"Kazakhstan",Played:false},
 		{Name:"Finland",Played:false},
 		{Name:"Sweden",Played:false},
 		{Name:"Indonesia",Played:false},
@@ -73,14 +73,18 @@ function mainCtrl ($scope)
 	$("#popup").append(open);    
 	$scope.mapClick = function (eventInfo)
 	{ 
-		var offset = $("#map").offset();
-		console.log(eventInfo.pageX - offset.left); 
-		console.log(eventInfo.pageY - offset.top);  
-		var longitude = convertToLong(eventInfo.pageX -  offset.left);
-		var lat = convertToLat(eventInfo.pageY - offset.top);  
-		console.log("LAT " + lat); 
-		console.log("LONG " + longitude); 
-		var locat = getLocation(longitude, lat, $scope);    
+		if (canClick) 
+		{
+			canClick = false; 
+			var offset = $("#map").offset();
+			console.log(eventInfo.pageX - offset.left); 
+			console.log(eventInfo.pageY - offset.top);  
+			var longitude = convertToLong(eventInfo.pageX -  offset.left);
+			var lat = convertToLat(eventInfo.pageY - offset.top);  
+			console.log("LAT " + lat); 
+			console.log("LONG " + longitude); 
+			var locat = getLocation(longitude, lat, $scope); 
+		}   
 	}
 	$scope.hidePopup = function ()
 	{ 
@@ -99,6 +103,7 @@ function mainCtrl ($scope)
 		$("#popup").slideToggle(); 
 		$("#contain").slideToggle(); 
 		$("#overlay-div").slideToggle();
+		canClick = true; 
 	} 
 }
 
@@ -175,8 +180,13 @@ function getLocation(x,y, $scope)
 		url: myUrl, 
 		dataType: "json", 
 		success: function(parsed_json) {
+			console.log(parsed_json); 
 			var selection; 
-			if (parsed_json.results == ""){selection = "undefined";}			else {
+			if (parsed_json.results == "")
+			{
+				selection = "undefined";
+			}			
+			else {
 				selection = parsed_json.results[0].components.country; 
 				console.log(selection);
 				checkAndUpdate(selection, $scope);  
