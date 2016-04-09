@@ -59,8 +59,7 @@ text-align: center;
 padding: 5px;
 left: 352px; 
 top: 100px;
-border-radius: 50%;
-/*background: radial-gradient(circle at 100px 100px, #41FFB3, #000);*/ 
+border-radius: 50%; 
 padding-top: 150px;
 }
 #globe-pic {

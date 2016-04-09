@@ -68,7 +68,7 @@ var countryList = [
 ]; 
 	
 
-function mainCtrl ($scope)
+function mainCtrl ($scope,$http)
 {
 	$("#popup").append(open);    
 	$scope.mapClick = function (eventInfo)
@@ -83,7 +83,7 @@ function mainCtrl ($scope)
 			var lat = convertToLat(eventInfo.pageY - offset.top);  
 			console.log("LAT " + lat); 
 			console.log("LONG " + longitude); 
-			var locat = getLocation(longitude, lat, $scope); 
+			var locat = getLocation(longitude, lat, $scope, $http); 
 		}   
 	}
 	$scope.hidePopup = function ()
@@ -173,7 +173,7 @@ function convertToLat(y)
 	}
 }
 
-function getLocation(x,y, $scope)
+function getLocation(x,y, $scope, $http)
 {
 	var myUrl = "http://api.opencagedata.com/geocode/v1/json?q=" + y +",+" + x + "&key=7e94b745a749cb44413754445f608f4a"; 
 	$.ajax({
@@ -184,16 +184,20 @@ function getLocation(x,y, $scope)
 			var selection; 
 			if (parsed_json.results == "")
 			{
-				selection = "undefined";
+				console.log("We're coming in here 1"); 
+				selection = "the ocean?";
+				checkAndUpdate(selection,$scope,$http); 
 			}
 			else if (parsed_json.total_results == 0)
 			{
-				selection = "undefined";
+				console.log("We're coming in here 2"); 
+				selection = "the ocean?";
+				checkAndUpdate(selection,$scope,$http); 
 			}			
 			else {
 				selection = parsed_json.results[0].components.country; 
 				console.log(selection);
-				checkAndUpdate(selection, $scope);  
+				checkAndUpdate(selection, $scope,$http);  
 			}
 		}, 
 		error: function(e) {
@@ -202,7 +206,7 @@ function getLocation(x,y, $scope)
 	}); 
 }
 
-function checkAndUpdate(selection, $scope)
+function checkAndUpdate(selection, $scope, $http)
 {
 	$scope.$apply(function () {
 	if (selection == curCountry["Name"])
@@ -213,6 +217,7 @@ function checkAndUpdate(selection, $scope)
 	}
 	else 
 	{
+		console.log("Failed with " + selection); 
 		failed = true; 
 		trys--;
 		incorrect(selection);  
@@ -225,12 +230,12 @@ function checkAndUpdate(selection, $scope)
 		level++; 
 		if (level == 6)
 		{
-			winner(); 
+			winner($http); 
 		} 
 	} 
 	else if (trys == 0)
 	{
-		loser(); 
+		loser($http); 
 	} 
 	});
 }
@@ -294,14 +299,14 @@ function flashFail()
 	failed = false; 
 }
 
-function winner() //CALL PUT POINTS HERE 
+function winner($http) //CALL PUT POINTS HERE 
 {
 	var message = "<h1>Congratulations!</h1><p>You are a geography wiz! You won with a whopping " + points + " points!</p>"; 
 	gameStart = false; 
 	drop(message); 
 }
 
-function loser() //CALL PUT POINTS HERE 
+function loser($http) //CALL PUT POINTS HERE 
 {
 	var message = "<h1>Participation Award</h1><p>Despite a valiant effort you still do not have what it takes to be considered a geography master. " + points + " points isn't bad though...Keep at it!</p>"; 
 	gameStart = false;
