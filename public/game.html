@@ -8,13 +8,9 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 	<link rel="stylesheet" href="stylesheets/gameStyle.css">
 </head>
-<body ng-app="game" ng-controller="mainCtrl">
-	
-	<div>
-		
-	</div>
 
-
+<body ng-app="game">
+<div ng-controller="mainCtrl">
 
 
 <div class="container" id="overlay-div"></div>
@@ -22,31 +18,38 @@
 	<div id="popup" ng-click="hidePopup()">
 	</div>
 </div>
+
+
+<div id="contain2"></div>
+
+
 <div class="container" id="page-head">
 	<div class="row">
-		<div class="col-md-3 stats">
+		<div class="col-md-3 stats" id="levelBox">
 			<h1 class="tabHeads">Level</h1>
-			<span>{{curLevel}}</span>
+			<h2 class="infoHeads">{{curLevel}}</h2>
 		</div>
-		<div class="col-md-3 stats">
+		<div class="col-md-3 stats" id="pointsBox">
 			<h1 class="tabHeads">Points</h1>
-			<span>{{curPoints}}</span>
+			<h2 class="infoHeads">{{curPoints}}</h2>
 		</div>
-		<div class="col-md-3 stats">
+		<div class="col-md-3 stats" id="trysBox">
 			<h1 class="tabHeads">Chances Left</h1>
-			<span>{{trysLeft}}</span>
+			<h2 class="infoHeads">{{trysLeft}}</h2>
 		</div>
-		<div class="col-md-3 stats">
+		<div class="col-md-3 stats" id="findBox">
 			<h1 class="tabHeads">Find</h1>
-			<span>{{curToFind}}</span>
+			<h2 class="infoHeads">{{curToFind}}</h2>
 		</div>
 	</div>
 </div>
 <div class="container">
 	<div id="map-div">
-	<img id="map"  src="http://wiki.alternatehistory.com/lib/exe/fetch.php/blank_map_directory/basemap.png" ng-click="mapClick($event)">
+	<img id="map" src="http://wiki.alternatehistory.com/lib/exe/fetch.php/blank_map_directory/basemap.png" ng-click="mapClick($event)"> 
+<!--	<img src="http://www.legallandconverter.com/images/worldthumb.jpg" ng-click="mapClick($event)"> -->
 	</div>
 </div>
 <link rel="stylesheet" href="stylesheets/gameStyle.css">
+</div>
 </body>
 </html>

@@ -10,40 +10,100 @@ var points = 0;
 var level = 1; 
 var trys = 6; 
 var curCountry; 
+var gameStart = true;
+var levelPoints = 0; 
+var failed = false; 
 
-var levelOne = [
-	{Name: "United States of America",Played:false}, 
-	{Name: "Australia",Played:false}, 
-	{Name: "China",Played:false}, 
-	{Name: "Brazil",Played:false}, 
-	{Name: "Russian Federation",Played:false}
+var countryList = [
+	[],
+	//LEVEL ONE 
+	[
+		{Name:"United States of America",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/US_flag_48_stars.svg/220px-US_flag_48_stars.svg.png"}, 
+		{Name:"Australia",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Flag_of_Australia_(converted).svg/2000px-Flag_of_Australia_(converted).svg.png"}, 
+		{Name:"China",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Sample_PRC_Flag.svg/3000px-Sample_PRC_Flag.svg.png"}, 
+		{Name:"Brazil",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/en/thumb/0/05/Flag_of_Brazil.svg/1280px-Flag_of_Brazil.svg.png"}, 
+		{Name:"Russian Federation",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/en/archive/f/f3/20120812153730!Flag_of_Russia.svg"}, 
+		{Name:"Canada",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/en/thumb/c/cf/Flag_of_Canada.svg/1280px-Flag_of_Canada.svg.png"}, 
+		{Name:"Greenland",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Flag_of_Greenland.svg/2000px-Flag_of_Greenland.svg.png"}
+	], 
+	//LEVEL TWO 
+	[
+		{Name:"India",Played:false,Flag:"http://www.mapsofindia.com/maps/india/india-flag-a4.jpg"}, 
+		{Name:"Egypt",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Flag_of_Egypt.svg/2000px-Flag_of_Egypt.svg.png"},
+		{Name:"Argentina",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Flag_of_Argentina.svg/2000px-Flag_of_Argentina.svg.png"},
+		{Name:"Spain",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/en/thumb/9/9a/Flag_of_Spain.svg/1280px-Flag_of_Spain.svg.png"},
+		{Name:"France",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/en/thumb/c/c3/Flag_of_France.svg/1280px-Flag_of_France.svg.png"},
+		{Name:"Mexico",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/commons/9/9d/Flag_of_Mexico_(reverse).png"},
+		{Name:"United Kingdom",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Flag_of_the_United_Kingdom.svg/1280px-Flag_of_the_United_Kingdom.svg.png"}
+	],
+	//LEVEL THREE
+	[
+		{Name:"Saudi Arabia",Played:false}, 
+		{Name:"Peru",Played:false},
+		{Name:"Mongolia",Played:false},
+		{Name:"Norway",Played:false},
+		{Name:"Italy",Played:false},
+		{Name:"Turkey",Played:false}
+	], 
+	//LEVEL FOUR
+	[
+		{Name:"Kazakhstan",Played:false},
+		{Name:"Finland",Played:false},
+		{Name:"Sweden",Played:false},
+		{Name:"Indonesia",Played:false},
+		{Name:"Morocco",Played:false},
+		{Name:"Libya",Played:false},
+		{Name:"Algeria",Played:false}
+	], 
+	//LEVEL FIVE 
+	[
+		{Name:"Pakistan",Played:false}, 
+		{Name:"Afghanistan",Played:false},
+		{Name:"Islamic Republic of Iran",Played:false}, 
+		{Name:"Myanmar",Played:false},
+		{Name:"Bolivia",Played:false}, 
+		{Name:"Sudan",Played:false}, 
+		{Name:"Ethiopia",Played:false}
+	]
 ]; 
-
+	
 
 function mainCtrl ($scope)
 {
-	$("#popup").append(open); 
-	$scope.curLevel = level; 
-	$scope.curPoints = points; 
-	$scope.trysLeft = trys; 
-	countrySelect(); 
-	$scope.curToFind = curCountry["Name"];   
+	$("#popup").append(open);    
 	$scope.mapClick = function (eventInfo)
 	{ 
-		var offset = $("#map").offset();
-		console.log(eventInfo.pageX - offset.left); 
-		console.log(eventInfo.pageY - offset.top);  
-		var longitude = convertToLong(eventInfo.pageX -  offset.left);
-		var lat = convertToLat(eventInfo.pageY - offset.top);  
-		console.log("LAT " + lat); 
-		console.log("LONG " + longitude); 
-		var locat = getLocation(longitude, lat, $scope);    
+		if (canClick) 
+		{
+			canClick = false; 
+			var offset = $("#map").offset();
+			console.log(eventInfo.pageX - offset.left); 
+			console.log(eventInfo.pageY - offset.top);  
+			var longitude = convertToLong(eventInfo.pageX -  offset.left);
+			var lat = convertToLat(eventInfo.pageY - offset.top);  
+			console.log("LAT " + lat); 
+			console.log("LONG " + longitude); 
+			var locat = getLocation(longitude, lat, $scope); 
+		}   
 	}
 	$scope.hidePopup = function ()
 	{ 
+		if (gameStart == true)
+		{
+			countrySelect(); 
+			$scope.curLevel = level; 
+			$scope.curPoints = points;
+			$scope.trysLeft = trys;  
+			$scope.curToFind = curCountry["Name"];  
+		}
+		else 
+		{
+			location.reload(); 
+		}
 		$("#popup").slideToggle(); 
 		$("#contain").slideToggle(); 
 		$("#overlay-div").slideToggle();
+		canClick = true; 
 	} 
 }
 
@@ -52,62 +112,64 @@ function countrySelect()
 	var checked = true; 
 	var index = 0; 
 	while (checked == true)
-	{   	
-		index = Math.floor(Math.random() * 5);
-		curCountry = levelOne[index];
-		checked = curCountry["Played"]; 
+	{
+		index = Math.floor(Math.random() * 7);
+		curCountry = countryList[level][index]; 
+		checked = curCountry["Played"];
 	}
-	levelOne[index]["Played"] = true; 
+	countryList[level][index]["Played"] = true; 
+	var toDisplay = "<div class='country-title'><h1 class='country-header'><img class='flagPic'id='leftPic' src='" + curCountry["Flag"] + "'/>LOCATE " + curCountry["Name"].toUpperCase() + "<img class='flagPic' id='rightPic' src='" + curCountry["Flag"] + "'/></h1></div>"; 
+	displayCountry(toDisplay);   
 }
 
 function convertToLong(x)
 {
-	//Out of bounds 
-	if (x <= 10)
+	if ( x < 10 )
 	{
-		return -1; 
+		return -300;
 	}
-	else if (x >= 988)
+	//WESTERN HEMISPHERE
+	else if ( (x >= 10) && (x <= 448) )
 	{
-		return -1; 
+		var a = -168.2040523;
+		var b = .51106287 * x; 
+		var c = -.000312765385 * Math.pow(x,2); 
+		var toReturn = a + b + c; 
+		console.log(toReturn); 
+		return toReturn; 
 	}
-	//Western Hemisphere
-	else if ((x > 10) && (x <=455))
+	//EASTER HEMISPHERE
+	else if ( (x > 448) && (x <= 984) )
 	{
-		var factor = 170/455; 
-		var toReturn = (152 - (factor * x)); 
-		return -Math.abs(toReturn);  
-	}
-	//Eastern Hemisphere
-	else
+	 	var a = -117.436; 
+		var b = .24662935 * x; 
+		var c = .00005142214 * Math.pow(x,2); 
+		var toReturn = a + b + c; 
+		console.log(toReturn); 
+		return toReturn; 
+	} 
+	else if ( x > 984 )
 	{
-		var factor = 176/460;
-		var toReturn = factor * x; 
-		return (toReturn - 176);  
+		return -300; 
 	}
 }
 
 function convertToLat(y)
-{ 
-	if (y <= 18)
-	{
-		return -300;
-	}
-	else if (y >= 560)
+{
+	if ( y < 19 )
 	{
 		return -300; 
 	}
-	else if ((y > 10) && (y < 335))
+	else if ( (y >= 19) && (y <= 533) )
 	{
-		var factor = 90/335; 
-		var toReturn = 90 - (factor * y);
-		return toReturn;
-	} 
+		var a = 85.3780064; 
+		var b = -.254887379 * y; 
+		var toReturn = a + b; 
+		return toReturn; 
+	}
 	else 
 	{
-		var factor = 60/225;
-		var toReturn = factor * (y - 335);
-		return -toReturn;
+		return -300; 
 	}
 }
 
@@ -118,12 +180,24 @@ function getLocation(x,y, $scope)
 		url: myUrl, 
 		dataType: "json", 
 		success: function(parsed_json) {
+			console.log(parsed_json); 
 			var selection; 
-			if (parsed_json.results == ""){selection = "undefined";}			else {
+			if (parsed_json.results == "")
+			{
+				selection = "undefined";
+			}
+			else if (parsed_json.total_results == 0)
+			{
+				selection = "undefined";
+			}			
+			else {
 				selection = parsed_json.results[0].components.country; 
 				console.log(selection);
 				checkAndUpdate(selection, $scope);  
 			}
+		}, 
+		error: function(e) {
+			console.log("Error with the ajax call " + e); 
 		}
 	}); 
 }
@@ -133,19 +207,22 @@ function checkAndUpdate(selection, $scope)
 	$scope.$apply(function () {
 	if (selection == curCountry["Name"])
 	{
+		levelPoints++; 
 		addPoint();
 		correct(selection);   	
 	}
 	else 
 	{
+		failed = true; 
 		trys--;
 		incorrect(selection);  
 	}
 	$scope.curPoints = points; 
 	$scope.trysLeft = trys; 
-	if (points == (level / 5))
+	if (levelPoints == 5)
 	{
-		level++;
+		levelPoints = 0; 
+		level++; 
 		if (level == 6)
 		{
 			winner(); 
@@ -154,9 +231,7 @@ function checkAndUpdate(selection, $scope)
 	else if (trys == 0)
 	{
 		loser(); 
-	}
-	countrySelect(); 
-	$scope.curToFind = curCountry["Name"]; 
+	} 
 	});
 }
 
@@ -168,7 +243,7 @@ function correct(selection)
 
 function incorrect(selection, $scope)
 {
-	var message = "<h1 class='levelHeaders'>Sorry!</h1><p>You picked " + selection + ", but we were looking for " + curCountry + "!</p>"; 
+	var message = "<h1 class='levelHeaders'>Sorry!</h1><p>You picked " + selection + ", but we were looking for " + curCountry["Name"] + "!</p>"; 
 	drop(message); 
 }
 
@@ -205,12 +280,30 @@ function drop (toDisplay)
 		.append(toDisplay);  
 }
 
-function winner()
+function displayCountry (toDisplay)
 {
-	alert("you win"); 
+	//var upperDisplay = toDisplay.toUpperCase(); 
+	$("#contain2").empty();  
+	$("#contain2").append(toDisplay); 
+	$("#contain2").fadeIn(250).delay(750).fadeOut(750);
 }
 
-function loser()
+function flashFail() 
 {
-	alert("you lose"); 
+	$("#chancesFlash").effect("highlight", {}, 3000); 
+	failed = false; 
+}
+
+function winner() //CALL PUT POINTS HERE 
+{
+	var message = "<h1>Congratulations!</h1><p>You are a geography wiz! You won with a whopping " + points + " points!</p>"; 
+	gameStart = false; 
+	drop(message); 
+}
+
+function loser() //CALL PUT POINTS HERE 
+{
+	var message = "<h1>Participation Award</h1><p>Despite a valiant effort you still do not have what it takes to be considered a geography master. " + points + " points isn't bad though...Keep at it!</p>"; 
+	gameStart = false;
+	drop(message);  
 }
