@@ -139,3 +139,13 @@ margin-left: 10px;
 	margin-right: auto;
 	box-shadow: 10px 10px 5px black;
 }
+#score-div{
+	visibility: hidden;
+	background-color: white;
+	position: absolute;
+	left: 0px;
+	right: 0px;
+	top: 0px;
+	bottom: 0px;
+	z-index: 50;
+}

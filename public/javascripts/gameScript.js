@@ -1,7 +1,6 @@
 var app = angular.module("game",[]); 
 app.controller("mainCtrl", mainCtrl);
 app.controller("loginCtrl", loginCtrl);
-app.controller("scoreCtrl", scoreCtrl); 
 
 /*var gameInstructions = "<h1>How well do you know the world?</h1><img id='globe-pic'src='https://openclipart.org/image/2400px/svg_to_png/218125/3d-Earth-Globe.png'/> <p>In this game you will be prompted to locate different countries on a blank map. Your mission should you accept is to make it through all five levels with as many points as possible, good luck!"; 
 */
@@ -12,7 +11,7 @@ var open = "<h1 class='levelHeaders'>LEVEL ONE</h1>";
 
 var points = 0; 
 var level = 1; 
-var trys = 6; 
+var trys = 2; 
 var curCountry; 
 var gameStart = true;
 var levelPoints = 0; 
@@ -71,31 +70,35 @@ var countryList = [
 	]
 ]; 
 
-function loginCtrl($scope, $http){
+function loginCtrl($scope){
 
-	$scope.create = function(player){
-		return $http.post('/players', player).success(function(data){
-			console.log("posted!");
-			curPlayer = data._id;
-			console.log(curPlayer);
-		});
-	};
 
 	$scope.addName = function(){
 		if($scope.playername === ''){return;}
 		console.log("In addName with "+$scope.playername);
-		$scope.create({
-			name: $scope.playername,
-			score:0,
-		});
+		curPlayer = $scope.playername;
+		console.log(curPlayer);
 		$("#overlay").slideToggle();
-	};
+	}
+	// $scope.create = function(player){
+	// 	return $http.post('/players', player).success(function(data){
+	// 		console.log("posted!");
+	// 		curPlayer = data._id;
+	// 		console.log(curPlayer);
+	// 	});
+	// };
+
+	// $scope.addName = function(){
+	// 	if($scope.playername === ''){return;}
+	// 	console.log("In addName with "+$scope.playername);
+	// 	$scope.create({
+	// 		name: $scope.playername,
+	// 		score:0,
+	// 	});
+	// 	$("#overlay").slideToggle();
+	// };
 }
 
-
-function scoreCtrl ($scope, $http){
-	$scope.
-}
 
 
 function mainCtrl ($scope,$http)
@@ -329,19 +332,34 @@ function flashFail()
 	failed = false; 
 }
 
-function putPoints($http){
-	return $http.put('/players/' + curPlayer + '/points').success(function(data){
-		console.log("putpoints worked");
-		song.score = points
-	})
+function getScores($http){
+	console.log("gothere");
+	return $http.get('/highscores').success(function(data){
+		console.log("got the scores!");
+		var everything;
+		$.each(data, function (i,item){
+			var now = i+1
+			everything += "<tr><td>"+now+"</td><td>"+data[i].name+"</td><td>"+data[i].score+"</td></tr>"; 
+		});
+		$("#highscores").html(everything);
+		$("#score-div").slideToggle();
+	});
 }
+
+function putPoints($http){
+	return $http.post('/players', {name: curPlayer, score: points}).success(function({name: curPlayer, score: points}){
+		console.log("posted!");
+	});
+}
+
 
 function winner($http) //CALL PUT POINTS HERE 
 {
 	var message = "<h1>Congratulations!</h1><p>You are a geography wiz! You won with a whopping " + points + " points!</p>"; 
 	gameStart = false; 
 	drop(message);
-	putPoints($http); 
+	putPoints($http);
+	getScores($http); 
 }
 
 function loser($http) //CALL PUT POINTS HERE 
@@ -350,6 +368,7 @@ function loser($http) //CALL PUT POINTS HERE
 	gameStart = false;
 	drop(message);  
 	putPoints($http);
+	getScores($http);
 }
 
 
