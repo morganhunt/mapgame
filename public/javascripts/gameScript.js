@@ -113,58 +113,39 @@ function countrySelect()
 		checked = curCountry["Played"];
 	}
 	countryList[level][index]["Played"] = true; 
-	var toDisplay = "<h1>Locate " + curCountry["Name"] + "</h1>"; 
+	var toDisplay = "<h1 class='country-header'>Locate " + curCountry["Name"] + "</h1>"; 
 	displayCountry(toDisplay);   
 }
 
 function convertToLong(x)
 {
-	//Out of bounds 
-	if (x <= 10)
-	{
-		return -1; 
-	}
-	else if (x >= 988)
-	{
-		return -1; 
-	}
-	//Western Hemisphere
-	else if ((x > 10) && (x <=455))
-	{
-		var factor = 170/455; 
-		var toReturn = (152 - (factor * x)); 
-		return -Math.abs(toReturn);  
-	}
-	//Eastern Hemisphere
-	else
-	{
-		var factor = 176/460;
-		var toReturn = factor * x; 
-		return (toReturn - 176);  
-	}
-}
-
-function convertToLat(y)
-{ 
-	if (y <= 18)
+	if ( x < 10 )
 	{
 		return -300;
 	}
-	else if (y >= 560)
+	//WESTERN HEMISPHERE
+	else if ( (x >= 10) && (x <= 448) )
+	{
+		var a = -169.1153;
+		var b = .5372 * x; 
+		var c = -.00036820692 * Math.pow(x,2); 
+		var toReturn = a + b + c; 
+		console.log(toReturn); 
+		return toReturn; 
+	}
+	//EASTER HEMISPHERE
+	else if ( (x > 448) && (x <= 984) )
+	{
+	 	var a = -117.436; 
+		var b = .24662935 * x; 
+		var c = .00005142214 * Math.pow(x,2); 
+		var toReturn = a + b + c; 
+		console.log(toReturn); 
+		return toReturn; 
+	} 
+	else if ( x > 984 )
 	{
 		return -300; 
-	}
-	else if ((y > 10) && (y < 335))
-	{
-		var factor = 90/335; 
-		var toReturn = 90 - (factor * y);
-		return toReturn;
-	} 
-	else 
-	{
-		var factor = 60/225;
-		var toReturn = factor * (y - 335);
-		return -toReturn;
 	}
 }
 
@@ -181,6 +162,9 @@ function getLocation(x,y, $scope)
 				console.log(selection);
 				checkAndUpdate(selection, $scope);  
 			}
+		}, 
+		error: function(e) {
+			console.log("Error with the ajax call " + e); 
 		}
 	}); 
 }
@@ -264,8 +248,9 @@ function drop (toDisplay)
 
 function displayCountry (toDisplay)
 {
+	var upperDisplay = toDisplay.toUpperCase(); 
 	$("#contain2").empty();  
-	$("#contain2").append(toDisplay); 
+	$("#contain2").append(upperDisplay); 
 	$("#contain2").fadeIn(250).delay(750).fadeOut(750);
 }
 

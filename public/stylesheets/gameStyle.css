@@ -81,12 +81,18 @@ height: 100px;
 width: 100%;
 position: fixed; 
 z-index: 20; 
-background: red; 
+background: #1F5075; 
 color: white; 
 font-family: "Gill Sans";
+font-weight: bold; 
 text-align: center; 
-font-size: 40px; 
+font-size: 51px; 
 }
 p {
 font-size: 20px;
+}
+.country-header {
+font-family: "Gill Sans"; 
+font-weight: bold; 
+font-size: 51px;
 }
