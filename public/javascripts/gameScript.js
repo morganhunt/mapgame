@@ -1,6 +1,7 @@
 var app = angular.module("game",[]); 
 app.controller("mainCtrl", mainCtrl);
-app.controller("loginCtrl", loginCtrl); 
+app.controller("loginCtrl", loginCtrl);
+app.controller("scoreCtrl", scoreCtrl); 
 
 /*var gameInstructions = "<h1>How well do you know the world?</h1><img id='globe-pic'src='https://openclipart.org/image/2400px/svg_to_png/218125/3d-Earth-Globe.png'/> <p>In this game you will be prompted to locate different countries on a blank map. Your mission should you accept is to make it through all five levels with as many points as possible, good luck!"; 
 */
@@ -72,16 +73,12 @@ var countryList = [
 
 function loginCtrl($scope, $http){
 
-	$scope.setPlayer = function(player){
-		curPlayer = player._id;
-		console.log(curPlayer);
-	}
-
 	$scope.create = function(player){
 		return $http.post('/players', player).success(function(data){
-			console.log("posted!")
+			console.log("posted!");
+			curPlayer = data._id;
+			console.log(curPlayer);
 		});
-		$scope.setPlayer(player);
 	};
 
 	$scope.addName = function(){
@@ -93,7 +90,13 @@ function loginCtrl($scope, $http){
 		});
 		$("#overlay").slideToggle();
 	};
-}	
+}
+
+
+function scoreCtrl ($scope, $http){
+	$scope.
+}
+
 
 function mainCtrl ($scope)
 {
@@ -321,11 +324,19 @@ function flashFail()
 	failed = false; 
 }
 
+function putPoints($http){
+	return $http.put('/players/' + curPlayer + '/points').success(function(data){
+		console.log("putpoints worked");
+		song.score = points
+	})
+}
+
 function winner() //CALL PUT POINTS HERE 
 {
 	var message = "<h1>Congratulations!</h1><p>You are a geography wiz! You won with a whopping " + points + " points!</p>"; 
 	gameStart = false; 
-	drop(message); 
+	drop(message);
+	putPoints(); 
 }
 
 function loser() //CALL PUT POINTS HERE 
@@ -333,4 +344,7 @@ function loser() //CALL PUT POINTS HERE
 	var message = "<h1>Participation Award</h1><p>Despite a valiant effort you still do not have what it takes to be considered a geography master. " + points + " points isn't bad though...Keep at it!</p>"; 
 	gameStart = false;
 	drop(message);  
+	putPoints();
 }
+
+

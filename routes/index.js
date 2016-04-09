@@ -25,4 +25,11 @@ router.get('/players/:player', function(req, res){
 	res.json(req.song);
 })
 
+router.put('players/:player/points', function(req, res, next){
+	req.player.points(function(err, song){
+		if(err){return next(err);}
+		res.json(player);
+	});
+});
+
 module.exports = router;
