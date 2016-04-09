@@ -28,13 +28,13 @@ var countryList = [
 	], 
 	//LEVEL TWO 
 	[
-		{Name:"India",Played:false}, 
-		{Name:"Egypt",Played:false},
-		{Name:"Argentina",Played:false},
-		{Name:"Spain",Played:false},
-		{Name:"France",Played:false},
-		{Name:"Mexico",Played:false},
-		{Name:"United Kingdom",Played:false}
+		{Name:"India",Played:false,Flag:"http://www.mapsofindia.com/maps/india/india-flag-a4.jpg"}, 
+		{Name:"Egypt",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Flag_of_Egypt.svg/2000px-Flag_of_Egypt.svg.png"},
+		{Name:"Argentina",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Flag_of_Argentina.svg/2000px-Flag_of_Argentina.svg.png"},
+		{Name:"Spain",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/en/thumb/9/9a/Flag_of_Spain.svg/1280px-Flag_of_Spain.svg.png"},
+		{Name:"France",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/en/thumb/c/c3/Flag_of_France.svg/1280px-Flag_of_France.svg.png"},
+		{Name:"Mexico",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/commons/9/9d/Flag_of_Mexico_(reverse).png"},
+		{Name:"United Kingdom",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Flag_of_the_United_Kingdom.svg/1280px-Flag_of_the_United_Kingdom.svg.png"}
 	],
 	//LEVEL THREE
 	[
@@ -183,6 +183,10 @@ function getLocation(x,y, $scope)
 			console.log(parsed_json); 
 			var selection; 
 			if (parsed_json.results == "")
+			{
+				selection = "undefined";
+			}
+			else if (parsed_json.total_results == 0)
 			{
 				selection = "undefined";
 			}			
