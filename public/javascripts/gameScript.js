@@ -126,9 +126,9 @@ function convertToLong(x)
 	//WESTERN HEMISPHERE
 	else if ( (x >= 10) && (x <= 448) )
 	{
-		var a = -169.1153;
-		var b = .5372 * x; 
-		var c = -.00036820692 * Math.pow(x,2); 
+		var a = -168.2040523;
+		var b = .51106287 * x; 
+		var c = -.000312765385 * Math.pow(x,2); 
 		var toReturn = a + b + c; 
 		console.log(toReturn); 
 		return toReturn; 
@@ -144,6 +144,25 @@ function convertToLong(x)
 		return toReturn; 
 	} 
 	else if ( x > 984 )
+	{
+		return -300; 
+	}
+}
+
+function convertToLat(y)
+{
+	if ( y < 19 )
+	{
+		return -300; 
+	}
+	else if ( (y >= 19) && (y <= 533) )
+	{
+		var a = 85.3780064; 
+		var b = -.254887379 * y; 
+		var toReturn = a + b; 
+		return toReturn; 
+	}
+	else 
 	{
 		return -300; 
 	}
