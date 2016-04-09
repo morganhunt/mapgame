@@ -1,5 +1,6 @@
 #overlay{
-	background-color: rgb(35,35,35);
+	/*background-color: rgb(35,35,35);*/
+	background: #668FA3;
 	position: absolute;
 	top: 0px;
 	bottom: 0px;
@@ -16,4 +17,5 @@
 	height: 30%;
 	margin-left: auto;
 	margin-right: auto;
+	box-shadow: 10px 10px 5px black;
 }
