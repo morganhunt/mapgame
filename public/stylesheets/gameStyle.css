@@ -87,12 +87,35 @@ font-family: "Gill Sans";
 font-weight: bold; 
 text-align: center; 
 font-size: 51px; 
+padding: 20px; 
 }
 p {
 font-size: 20px;
 }
-.country-header {
-font-family: "Gill Sans"; 
+.country-header { 
 font-weight: bold; 
-font-size: 51px;
+}
+#levelBox {
+background: #8282FF; 
+}
+#pointsBox {
+background: #5CE43A; 
+}
+#trysBox {
+background: rgb(255,34,34); 
+}
+#findBox {
+background: #8282FF; 
+}
+.infoHeads {
+margin-top: -3px; 
+}
+.flagPic {
+width: 75px;
+} 
+#leftPic {
+margin-right: 10px;
+}
+#rightPic {
+margin-left: 10px;
 }

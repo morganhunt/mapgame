@@ -12,19 +12,19 @@ var trys = 6;
 var curCountry; 
 var gameStart = true;
 var levelPoints = 0; 
-var canClick = true;   
+var failed = false; 
 
 var countryList = [
 	[],
 	//LEVEL ONE 
 	[
-		{Name:"United States of America",Played:false}, 
-		{Name:"Australia",Played:false}, 
-		{Name:"China",Played:false}, 
-		{Name:"Brazil",Played:false}, 
-		{Name:"Russian Federation",Played:false}, 
-		{Name:"Canada",Played:false}, 
-		{Name:"Greenland",Played:false}
+		{Name:"United States of America",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/US_flag_48_stars.svg/220px-US_flag_48_stars.svg.png"}, 
+		{Name:"Australia",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Flag_of_Australia_(converted).svg/2000px-Flag_of_Australia_(converted).svg.png"}, 
+		{Name:"China",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Sample_PRC_Flag.svg/3000px-Sample_PRC_Flag.svg.png"}, 
+		{Name:"Brazil",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/en/thumb/0/05/Flag_of_Brazil.svg/1280px-Flag_of_Brazil.svg.png"}, 
+		{Name:"Russian Federation",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/en/archive/f/f3/20120812153730!Flag_of_Russia.svg"}, 
+		{Name:"Canada",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/en/thumb/c/cf/Flag_of_Canada.svg/1280px-Flag_of_Canada.svg.png"}, 
+		{Name:"Greenland",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Flag_of_Greenland.svg/2000px-Flag_of_Greenland.svg.png"}
 	], 
 	//LEVEL TWO 
 	[
@@ -118,7 +118,7 @@ function countrySelect()
 		checked = curCountry["Played"];
 	}
 	countryList[level][index]["Played"] = true; 
-	var toDisplay = "<h1 class='country-header'>Locate " + curCountry["Name"] + "</h1>"; 
+	var toDisplay = "<div class='country-title'><h1 class='country-header'><img class='flagPic'id='leftPic' src='" + curCountry["Flag"] + "'/>LOCATE " + curCountry["Name"].toUpperCase() + "<img class='flagPic' id='rightPic' src='" + curCountry["Flag"] + "'/></h1></div>"; 
 	displayCountry(toDisplay);   
 }
 
@@ -209,6 +209,7 @@ function checkAndUpdate(selection, $scope)
 	}
 	else 
 	{
+		failed = true; 
 		trys--;
 		incorrect(selection);  
 	}
@@ -277,10 +278,16 @@ function drop (toDisplay)
 
 function displayCountry (toDisplay)
 {
-	var upperDisplay = toDisplay.toUpperCase(); 
+	//var upperDisplay = toDisplay.toUpperCase(); 
 	$("#contain2").empty();  
-	$("#contain2").append(upperDisplay); 
+	$("#contain2").append(toDisplay); 
 	$("#contain2").fadeIn(250).delay(750).fadeOut(750);
+}
+
+function flashFail() 
+{
+	$("#chancesFlash").effect("highlight", {}, 3000); 
+	failed = false; 
 }
 
 function winner() //CALL PUT POINTS HERE 
