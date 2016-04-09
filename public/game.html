@@ -10,8 +10,19 @@
 </head>
 
 <body ng-app="game">
-<div ng-controller="mainCtrl">
 
+	<div ng-controller="loginCtrl" id="overlay">
+		<div id="loginScreen">
+			<h1>Play the Map Game</h1>
+			<p>See how well you know the world's countries</p>
+			<form>
+				<input type="text" ng-model="playername" placeholder="Enter your name to play">
+				<button ng-click="addName()">Start Game!</button>
+			</form>
+		</div>
+	</div>
+
+<div ng-controller="mainCtrl">
 
 <div class="container" id="overlay-div"></div>
 <div id="contain">

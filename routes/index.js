@@ -20,5 +20,9 @@ router.post('/players', function(req, res, next){
 	});
 });
 
+//Get a player from the database.
+router.get('/players/:player', function(req, res){
+	res.json(req.song);
+})
 
 module.exports = router;

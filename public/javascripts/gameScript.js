@@ -1,8 +1,11 @@
 var app = angular.module("game",[]); 
-app.controller("mainCtrl", mainCtrl); 
+app.controller("mainCtrl", mainCtrl);
+app.controller("loginCtrl", loginCtrl); 
 
 /*var gameInstructions = "<h1>How well do you know the world?</h1><img id='globe-pic'src='https://openclipart.org/image/2400px/svg_to_png/218125/3d-Earth-Globe.png'/> <p>In this game you will be prompted to locate different countries on a blank map. Your mission should you accept is to make it through all five levels with as many points as possible, good luck!"; 
 */
+
+var curPlayer;
 
 var open = "<h1 class='levelHeaders'>LEVEL ONE</h1>"; 
 
@@ -66,7 +69,31 @@ var countryList = [
 		{Name:"Ethiopia",Played:false}
 	]
 ]; 
-	
+
+function loginCtrl($scope, $http){
+
+	$scope.setPlayer = function(player){
+		curPlayer = player._id;
+		console.log(curPlayer);
+	}
+
+	$scope.create = function(player){
+		return $http.post('/players', player).success(function(data){
+			console.log("posted!")
+		});
+		$scope.setPlayer(player);
+	};
+
+	$scope.addName = function(){
+		if($scope.playername === ''){return;}
+		console.log("In addName with "+$scope.playername);
+		$scope.create({
+			name: $scope.playername,
+			score:0,
+		});
+		$("#overlay").slideToggle();
+	};
+}	
 
 function mainCtrl ($scope)
 {
