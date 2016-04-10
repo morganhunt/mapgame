@@ -23,13 +23,40 @@ router.post('/players', function(req, res, next){
 //Get a player from the database.
 router.get('/players/:player', function(req, res){
 	res.json(req.song);
-})
+});
 
-router.put('players/:player/points', function(req, res, next){
-	req.player.points(function(err, song){
-		if(err){return next(err);}
-		res.json(player);
+//Get Top 10 High Scores.
+router.get('/highscores', function(req, res, next){
+	console.log("In highscore route");
+	Player.find().limit(10).select({name:1,score:1}).sort({score:-1}).exec(function(err,scores){
+		if(err) return console.error(err);
+		else{
+			console.log(scores);
+			res.json(scores);
+		}
 	});
 });
+
+
+// router.put('/players', function(req, res, next){
+// 	console.log("in the PUT route");
+// 	console.log(req.query);
+// 	var something = 'ObjectId("' + req.query.q + '")';
+// 	player.update(
+// 		{_id:something},
+// 		{
+// 			$set:{
+// 				score: req.query.s
+// 			},
+// 		},
+// 		function(err, update){
+// 			if(err)return conole.error(err);
+// 			else{
+// 				console.log(update);
+// 				return;
+// 			}
+// 		}
+// 	);
+// })
 
 module.exports = router;
