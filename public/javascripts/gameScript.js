@@ -1,7 +1,7 @@
 var app = angular.module("game",[]); 
 app.controller("mainCtrl", mainCtrl);
 app.controller("loginCtrl", loginCtrl); 
-
+app.controller("highScoreCtrl", highScoreCtrl); 
 /*var gameInstructions = "<h1>How well do you know the world?</h1><img id='globe-pic'src='https://openclipart.org/image/2400px/svg_to_png/218125/3d-Earth-Globe.png'/> <p>In this game you will be prompted to locate different countries on a blank map. Your mission should you accept is to make it through all five levels with as many points as possible, good luck!"; 
 */
 
@@ -16,6 +16,7 @@ var curCountry;
 var gameStart = true;
 var levelPoints = 0; 
 var failed = false; 
+var gameOver = false; 
 
 var countryList = [
 	[],
@@ -108,15 +109,25 @@ function mainCtrl ($scope,$http)
 			$scope.trysLeft = trys;  
 			$scope.curToFind = curCountry["Name"];  
 		}
-		else 
-		{
-			location.reload(); 
-		}
 		$("#popup").slideToggle(); 
 		$("#contain").slideToggle(); 
 		$("#overlay-div").slideToggle();
-		canClick = true; 
+		canClick = true;
+		if (gameOver)
+		{
+			putPoints($http); 
+			getScores($http); 
+		} 
 	} 
+}
+
+function highScoreCtrl ($scope)
+{
+	console.log("We get in here fine"); 
+	$scope.restart = function()
+	{
+		location.reload(); 
+	}
 }
 
 function countrySelect()
@@ -220,35 +231,54 @@ function getLocation(x,y, $scope, $http)
 
 function checkAndUpdate(selection, $scope, $http)
 {
+	var right = false; 
 	$scope.$apply(function () {
 	if (selection == curCountry["Name"])
 	{
 		levelPoints++; 
 		addPoint();
-		correct(selection);   	
+		right = true; 
+//		correct(selection);   	
 	}
 	else 
 	{
 		console.log("Failed with " + selection); 
 		failed = true; 
 		trys--;
-		incorrect(selection);  
+		right = false; 
+//		incorrect(selection);  
 	}
-	$scope.curPoints = points; 
-	$scope.trysLeft = trys; 
+	$scope.curPoints = points;
+	if (trys != -1)
+	{ 
+		$scope.trysLeft = trys;
+	} 
 	if (levelPoints == 5)
 	{
 		levelPoints = 0; 
 		level++; 
 		if (level == 6)
-		{
+		{ 
+			gameOver = true; 
 			winner($http); 
 		} 
 	} 
-	else if (trys == 0)
+	else if (trys == -1)
 	{
+		gameOver = true; 
 		loser($http); 
 	} 
+	if (!gameOver)
+	{
+		if (right)
+		{
+			correct(selection); 
+		}
+		else
+		{
+			incorrect(selection); 
+		}
+	}
 	});
 }
 
@@ -315,13 +345,19 @@ function getScores($http){
 	console.log("gothere");
 	return $http.get('/highscores').success(function(data){
 		console.log("got the scores!");
-		var everything;
+		var everything = "<div class='container'><table class='table'><th>Place</th><th>User</th><th>Score</th><tbody>";
 		$.each(data, function (i,item){
 			var now = i+1
 			everything += "<tr><td>"+now+"</td><td>"+data[i].name+"</td><td>"+data[i].score+"</td></tr>"; 
 		});
-		$("#highscores").html(everything);
+		everything += "</tbody></table>"; 
+		everything += "</div>";
+		//$("#score-div").append(everything);
+		$("#topHeader").after(everything); 
 		$("#score-div").slideToggle();
+		$("#mainGameFrame").empty(); 
+		$("#overlay").empty();
+		$("body").css("background-color","white");  
 	});
 }
 
@@ -337,8 +373,9 @@ function winner($http) //CALL PUT POINTS HERE
 	var message = "<h1>Congratulations!</h1><p>You are a geography wiz! You won with a whopping " + points + " points!</p>"; 
 	gameStart = false; 
 	drop(message);
-	putPoints($http);
-	getScores($http); 
+	gameOver = true; 
+//	putPoints($http);
+//	getScores($http); 
 }
 
 function loser($http) //CALL PUT POINTS HERE 
@@ -346,8 +383,9 @@ function loser($http) //CALL PUT POINTS HERE
 	var message = "<h1>Participation Award</h1><p>Despite a valiant effort you still do not have what it takes to be considered a geography master. " + points + " points isn't bad though...Keep at it!</p>"; 
 	gameStart = false;
 	drop(message);  
-	putPoints($http);
-	getScores($http);
+	gameOver = true; 
+//	putPoints($http);
+//	getScores($http);
 }
 
 

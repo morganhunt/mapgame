@@ -130,17 +130,14 @@ margin-left: 10px;
 
 #loginScreen{
 	text-align: center;
-	background-color: rgb(235,228,218);
-	border-radius: 10px;
 	margin-top: 10%;
 	width: 75%;
 	height: 30%;
 	margin-left: auto;
 	margin-right: auto;
-	box-shadow: 10px 10px 5px black;
 }
 #score-div{
-	visibility: hidden;
+	display:none; 
 	background-color: white;
 	position: absolute;
 	left: 0px;
@@ -148,4 +145,32 @@ margin-left: 10px;
 	top: 0px;
 	bottom: 0px;
 	z-index: 50;
+}
+#topHeader {
+font-family: "Gill Sans"; 
+font-weight: bold; 
+font-size: 50px; 
+text-align: center; 
+}
+#loginScreen h1 {
+font-size: 60px; 
+font-weight: bold; 
+}
+#loginScreen input {
+text-align: center;
+height: 43px; 
+font-size: 20px; 
+}
+#loginScreen button {
+background: white;
+width: 100px;	 
+}
+#loginScreen button:hover {
+background: black;
+color: white;  
+}
+#loginScreen button:focus {
+background: black; 
+color: white; 
+outline: 0; 
 }

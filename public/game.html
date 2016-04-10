@@ -13,16 +13,17 @@
 
 	<div ng-controller="loginCtrl" id="overlay">
 		<div id="loginScreen">
-			<h1>Play the Map Game</h1>
-			<p>See how well you know the world's countries</p>
+			<h1>World Map Game</h1>
+			<p>Play this game to see how well you know the countries of the world!</p>
 			<form>
-				<input type="text" ng-model="playername" placeholder="Enter your name to play">
-				<button ng-click="addName()">Start Game!</button>
+				<input type="text" ng-model="playername" placeholder="Enter a Username to Start" class="form-control">
+				<br>
+				<button class="btn btn-secondary btn-outline btn-lg" ng-click="addName()">Start</button>
 			</form>
 		</div>
 	</div>
 
-<div ng-controller="mainCtrl">
+<div ng-controller="mainCtrl" id="mainGameFrame">
 
 <div class="container" id="overlay-div"></div>
 <div id="contain">
@@ -62,10 +63,9 @@
 </div>
 </div>
 
-<div id="score-div">
-	<h1>Top Ten High Scores</h1>
-	<table id="highscores">
-	</table>
+<div ng-controller="highScoreCtrl" id="score-div">
+	<h1 id="topHeader">TOP TEN HIGH SCORES</h1>
+	<button ng-click="restart()">Play Again</button>
 </div>
 
 </body>
