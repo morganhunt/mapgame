@@ -138,7 +138,8 @@ margin-left: 10px;
 }
 #score-div{
 	display:none; 
-	background-color: white;
+	background-color: #668FA3;
+	color: white; 
 	position: absolute;
 	left: 0px;
 	right: 0px;
@@ -173,4 +174,36 @@ color: white;
 background: black; 
 color: white; 
 outline: 0; 
+}
+#score-div button {
+background: white; 
+color: black; 
+width: 120px;
+}
+#score-div button:hover {
+background: black; 
+color: white; 
+}
+#score-div button:focus {
+background: black; 
+color: white; 
+outline: 0; 
+}
+#score-div table {
+background: white; 
+color: black;
+font-family: "Gill Sans"; 
+font-size: 20px; 
+text-align: center;  
+}
+#button-div {
+text-align: center;
+}
+.table-header {
+text-align: center; 
+}
+#popup:hover {
+background: white; 
+color: black;
+cursor: pointer;  
 }

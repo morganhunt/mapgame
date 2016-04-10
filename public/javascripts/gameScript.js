@@ -11,7 +11,7 @@ var open = "<h1 class='levelHeaders'>LEVEL ONE</h1>";
 
 var points = 0; 
 var level = 1; 
-var trys = 2; 
+var trys = 3; 
 var curCountry; 
 var gameStart = true;
 var levelPoints = 0; 
@@ -28,7 +28,8 @@ var countryList = [
 		{Name:"Brazil",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/en/thumb/0/05/Flag_of_Brazil.svg/1280px-Flag_of_Brazil.svg.png"}, 
 		{Name:"Russian Federation",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/en/archive/f/f3/20120812153730!Flag_of_Russia.svg"}, 
 		{Name:"Canada",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/en/thumb/c/cf/Flag_of_Canada.svg/1280px-Flag_of_Canada.svg.png"}, 
-		{Name:"Greenland",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Flag_of_Greenland.svg/2000px-Flag_of_Greenland.svg.png"}
+		{Name:"Greenland",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Flag_of_Greenland.svg/2000px-Flag_of_Greenland.svg.png"},
+		 {Name:"Japan",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/en/thumb/9/9e/Flag_of_Japan.svg/1280px-Flag_of_Japan.svg.png"}
 	], 
 	//LEVEL TWO 
 	[
@@ -38,36 +39,41 @@ var countryList = [
 		{Name:"Spain",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/en/thumb/9/9a/Flag_of_Spain.svg/1280px-Flag_of_Spain.svg.png"},
 		{Name:"France",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/en/thumb/c/c3/Flag_of_France.svg/1280px-Flag_of_France.svg.png"},
 		{Name:"Mexico",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/commons/9/9d/Flag_of_Mexico_(reverse).png"},
-		{Name:"United Kingdom",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Flag_of_the_United_Kingdom.svg/1280px-Flag_of_the_United_Kingdom.svg.png"}
+		{Name:"United Kingdom",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Flag_of_the_United_Kingdom.svg/1280px-Flag_of_the_United_Kingdom.svg.png"},
+		{Name:"Venezuela",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Flag_of_Venezuela_(1930-1954).svg/2000px-Flag_of_Venezuela_(1930-1954).svg.png"}
 	],
 	//LEVEL THREE
 	[
-		{Name:"Saudi Arabia",Played:false}, 
-		{Name:"Peru",Played:false},
-		{Name:"Mongolia",Played:false},
-		{Name:"Norway",Played:false},
-		{Name:"Italy",Played:false},
-		{Name:"Turkey",Played:false}
+		{Name:"Saudi Arabia",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Flag_of_Saudi_Arabia.svg/2000px-Flag_of_Saudi_Arabia.svg.png"}, 
+		{Name:"Peru",Played:false,Flag:"http://www.worldatlas.com/webimage/flags/countrys/zzzflags/pelarge.gif"},
+		{Name:"Mongolia",Played:false,Flag:"http://www.crwflags.com/fotw/images/m/mn-1949.gif"},
+		{Name:"Norway",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Flag_of_Norway.svg/2000px-Flag_of_Norway.svg.png"},
+		{Name:"Italy",Played:false,Flag:"http://ecx.images-amazon.com/images/I/410xf8qcicL._SX300_.jpg"},
+		{Name:"Turkey",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Flag_of_Turkey.svg/2000px-Flag_of_Turkey.svg.png"},
+		{Name:"South Africa",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Flag_of_South_Africa.svg/2000px-Flag_of_South_Africa.svg.png"},
+		{Name:"Germany",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/en/thumb/b/ba/Flag_of_Germany.svg/1280px-Flag_of_Germany.svg.png"}
 	], 
 	//LEVEL FOUR
 	[
-		{Name:"Kazakhstan",Played:false},
-		{Name:"Finland",Played:false},
-		{Name:"Sweden",Played:false},
-		{Name:"Indonesia",Played:false},
-		{Name:"Morocco",Played:false},
-		{Name:"Libya",Played:false},
-		{Name:"Algeria",Played:false}
+		{Name:"Kazakhstan",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Flag_of_Kazakhstan.svg/2000px-Flag_of_Kazakhstan.svg.png"},
+		{Name:"Finland",Played:false,Flag:"http://3951-presscdn-28-25.pagely.netdna-cdn.com/wp-content/uploads/2014/01/Finland-Flag.gif"},
+		{Name:"Sweden",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/en/thumb/4/4c/Flag_of_Sweden.svg/1600px-Flag_of_Sweden.svg.png"},
+		{Name:"Indonesia",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Flag_of_Indonesia.svg/2000px-Flag_of_Indonesia.svg.png"},
+		{Name:"Morocco",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Flag_of_Morocco.svg/2000px-Flag_of_Morocco.svg.png"},
+		{Name:"Libya",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Flag_of_Libya.svg/2000px-Flag_of_Libya.svg.png"},
+		{Name:"Algeria",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Flag_of_Algeria.svg/2000px-Flag_of_Algeria.svg.png"},
+		{Name:"Iraq",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Flag_of_Iraq.svg/2000px-Flag_of_Iraq.svg.png"}
 	], 
 	//LEVEL FIVE 
 	[
-		{Name:"Pakistan",Played:false}, 
-		{Name:"Afghanistan",Played:false},
-		{Name:"Islamic Republic of Iran",Played:false}, 
-		{Name:"Myanmar",Played:false},
-		{Name:"Bolivia",Played:false}, 
-		{Name:"Sudan",Played:false}, 
-		{Name:"Ethiopia",Played:false}
+		{Name:"Pakistan",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Flag_of_Pakistan.svg/2000px-Flag_of_Pakistan.svg.png"}, 
+		{Name:"Afghanistan",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Flag_of_Afghanistan.svg/2000px-Flag_of_Afghanistan.svg.png"},
+		{Name:"Islamic Republic of Iran",Played:false,Flag:"http://informedexplorer.com/wp-content/uploads/2013/01/Iran-Flag.gif"}, 
+		{Name:"Myanmar",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Flag_of_Myanmar.svg/2000px-Flag_of_Myanmar.svg.png"},
+		{Name:"Bolivia",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Flag_of_Bolivia_(state).svg/2000px-Flag_of_Bolivia_(state).svg.png"}, 
+		{Name:"Sudan",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Flag_of_Sudan.svg/2000px-Flag_of_Sudan.svg.png"}, 
+		{Name:"Ethiopia",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Flag_of_Ethiopia.svg/2000px-Flag_of_Ethiopia.svg.png"},
+		{Name:"Chad",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Flag_of_Chad.svg/2000px-Flag_of_Chad.svg.png"}
 	]
 ]; 
 
@@ -136,7 +142,7 @@ function countrySelect()
 	var index = 0; 
 	while (checked == true)
 	{
-		index = Math.floor(Math.random() * 7);
+		index = Math.floor(Math.random() * 8);
 		curCountry = countryList[level][index]; 
 		checked = curCountry["Played"];
 	}
@@ -208,7 +214,7 @@ function getLocation(x,y, $scope, $http)
 			if (parsed_json.results == "")
 			{
 				console.log("We're coming in here 1"); 
-				selection = "the ocean?";
+				selection = "the ocean";
 				checkAndUpdate(selection,$scope,$http); 
 			}
 			else if (parsed_json.total_results == 0)
@@ -256,14 +262,14 @@ function checkAndUpdate(selection, $scope, $http)
 	if (levelPoints == 5)
 	{
 		levelPoints = 0; 
-		level++; 
+		level++;  
 		if (level == 6)
 		{ 
 			gameOver = true; 
 			winner($http); 
 		} 
 	} 
-	else if (trys == -1)
+	else if (trys == 0)
 	{
 		gameOver = true; 
 		loser($http); 
@@ -345,7 +351,7 @@ function getScores($http){
 	console.log("gothere");
 	return $http.get('/highscores').success(function(data){
 		console.log("got the scores!");
-		var everything = "<div class='container'><table class='table'><th>Place</th><th>User</th><th>Score</th><tbody>";
+		var everything = "<div class='container'><table class='table'><th class='table-header'>Place</th><th class='table-header'>User</th><th class='table-header'>Score</th><tbody>";
 		$.each(data, function (i,item){
 			var now = i+1
 			everything += "<tr><td>"+now+"</td><td>"+data[i].name+"</td><td>"+data[i].score+"</td></tr>"; 
@@ -380,7 +386,7 @@ function winner($http) //CALL PUT POINTS HERE
 
 function loser($http) //CALL PUT POINTS HERE 
 {
-	var message = "<h1>Participation Award</h1><p>Despite a valiant effort you still do not have what it takes to be considered a geography master. " + points + " points isn't bad though...Keep at it!</p>"; 
+	var message = "<h1>Participation Award</h1><p>Despite a valiant effort you still do not have what it takes to be considered a geography master. " + points + " points isn't bad though!</p>"; 
 	gameStart = false;
 	drop(message);  
 	gameOver = true; 
