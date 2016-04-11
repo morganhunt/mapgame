@@ -16,7 +16,9 @@ var curCountry;
 var gameStart = true;
 var levelPoints = 0; 
 var failed = false; 
-var gameOver = false; 
+var gameOver = false;
+var levelDropDown = false; 
+ 
 
 var countryList = [
 	[],
@@ -78,6 +80,7 @@ var countryList = [
 ]; 
 
 function loginCtrl($scope){
+	$("#userInput").focus(); 
 	$scope.addName = function(){
 		if($scope.playername === ''){return;}
 		console.log("In addName with "+$scope.playername);
@@ -124,6 +127,11 @@ function mainCtrl ($scope,$http)
 			putPoints($http); 
 			getScores($http); 
 		} 
+		if (levelDropDown)
+		{
+			dropLevel();  
+			levelDropDown = false; 
+		}
 	} 
 }
 
@@ -261,8 +269,9 @@ function checkAndUpdate(selection, $scope, $http)
 	} 
 	if (levelPoints == 5)
 	{
-		levelPoints = 0; 
-		level++;  
+		levelPoints = 0;
+		levelDropDown = true;  
+		level++;     
 		if (level == 6)
 		{ 
 			gameOver = true; 
@@ -325,20 +334,29 @@ function addPoint()
 }
 
 function drop (toDisplay)
-{  
-	$("#popup").empty();  
-	$("#overlay-div").slideToggle(); 
-	$("#contain").slideToggle();    
-	$("#popup").slideToggle() 
-		.append(toDisplay);  
+{
+		$("#popup").empty();  
+		$("#overlay-div").slideToggle(); 
+		$("#contain").slideToggle();    
+		$("#popup").slideToggle() 
+			.append(toDisplay);   
 }
+
 
 function displayCountry (toDisplay)
 {
-	//var upperDisplay = toDisplay.toUpperCase(); 
 	$("#contain2").empty();  
 	$("#contain2").append(toDisplay); 
 	$("#contain2").fadeIn(250).delay(750).fadeOut(750);
+}
+
+function dropLevel () 
+{
+	$("#levelBanner").empty(); 
+	var toDisplay = "<h1>LEVEL " + level + "</h1>"
+	$("#levelContainer").fadeIn(100).delay(2000).fadeOut(100);  
+	$("#levelBanner").append(toDisplay).fadeIn(100).delay(2000).fadeOut(100); 
+	 
 }
 
 function flashFail() 
