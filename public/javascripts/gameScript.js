@@ -127,11 +127,11 @@ function mainCtrl ($scope,$http)
 			putPoints($http); 
 			getScores($http); 
 		} 
-		if (levelDropDown)
+		/*if (levelDropDown)
 		{
 			dropLevel();  
 			levelDropDown = false; 
-		}
+		}*/
 	} 
 }
 
@@ -411,5 +411,4 @@ function loser($http) //CALL PUT POINTS HERE
 //	putPoints($http);
 //	getScores($http);
 }
-
 
