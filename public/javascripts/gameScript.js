@@ -231,7 +231,7 @@ function getLocation(x,y, $scope, $http)
 			else if (parsed_json.total_results == 0)
 			{
 				console.log("We're coming in here 2"); 
-				selection = "the ocean?";
+				selection = "the ocean";
 				checkAndUpdate(selection,$scope,$http); 
 			}			
 			else {
@@ -268,6 +268,42 @@ function checkAndUpdate(selection, $scope, $http)
 		addPoint();
 		right = true; 
 //		correct(selection);   	
+	}
+	else if (curCountry["Name"] == "Italy")
+	{
+		if (selection == "Croatia")
+		{
+			levelPoints++;
+                	addPoint();
+                	right = true;
+		}
+	}
+	else if (curCountry["Name"] == "Mexico")
+	{
+		if (selection == "the ocean")
+		{
+			levelPoints++;
+                        addPoint();
+                        right = true;
+		}
+	}
+	else if (curCountry["Name"] == "Japan")
+	{
+		if (selection == "the ocean")
+		{
+			levelPoints++;
+			addPoint(); 
+			right = true; 
+		}
+	}
+	else if (curCountry["Name"] == "Canada")
+	{
+		if (selection == "the ocean")
+		{
+			levelPoints++; 
+			addPoint(); 
+			right = true; 
+		}	
 	}
 	else 
 	{
