@@ -1,4 +1,7 @@
-
+@font-face {
+font-family: myFont; 
+src: url(GillSans.ttc); 
+}
 body {
 background: #668FA3; 
 }
@@ -55,7 +58,7 @@ opacity: .9;
 height: 400px;
 width: 400px; 
 color: white; 
-font-family: "Gill Sans"; 
+font-family: myFont; 
 text-align: center; 
 padding: 5px;
 border-radius: 50%; 
@@ -66,7 +69,7 @@ margin-top: 100px;
 width: 80px;
 }
 .levelHeaders {
-font-family "Gill Sans";
+font-family myFont;
 font-weight: bold;
 font-size: 51px;
 }
@@ -82,7 +85,7 @@ position: fixed;
 z-index: 20; 
 background: #1F5075; 
 color: white; 
-font-family: "Gill Sans";
+font-family: myFont;
 font-weight: bold; 
 text-align: center; 
 font-size: 51px; 
@@ -148,7 +151,7 @@ margin-left: 10px;
 	z-index: 50;
 }
 #topHeader {
-font-family: "Gill Sans"; 
+font-family: myFont; 
 font-weight: bold; 
 font-size: 50px; 
 text-align: center; 
@@ -192,7 +195,7 @@ outline: 0;
 #score-div table {
 background: white; 
 color: black;
-font-family: "Gill Sans"; 
+font-family: myFont; 
 font-size: 20px; 
 text-align: center;  
 }

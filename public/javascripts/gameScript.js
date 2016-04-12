@@ -18,7 +18,10 @@ var levelPoints = 0;
 var failed = false; 
 var gameOver = false;
 var levelDropDown = false; 
- 
+
+var sAStandIn = {Name:"RSA"};  
+var rStandIn = {Name:"Russian Federation"}; 
+var iStandIn = {Name:"Islamic Republic of Iran"}; 
 
 var countryList = [
 	[],
@@ -28,7 +31,7 @@ var countryList = [
 		{Name:"Australia",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Flag_of_Australia_(converted).svg/2000px-Flag_of_Australia_(converted).svg.png"}, 
 		{Name:"China",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Sample_PRC_Flag.svg/3000px-Sample_PRC_Flag.svg.png"}, 
 		{Name:"Brazil",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/en/thumb/0/05/Flag_of_Brazil.svg/1280px-Flag_of_Brazil.svg.png"}, 
-		{Name:"Russian Federation",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/en/archive/f/f3/20120812153730!Flag_of_Russia.svg"}, 
+		{Name:"Russia",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/en/archive/f/f3/20120812153730!Flag_of_Russia.svg"}, 
 		{Name:"Canada",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/en/thumb/c/cf/Flag_of_Canada.svg/1280px-Flag_of_Canada.svg.png"}, 
 		{Name:"Greenland",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Flag_of_Greenland.svg/2000px-Flag_of_Greenland.svg.png"},
 		 {Name:"Japan",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/en/thumb/9/9e/Flag_of_Japan.svg/1280px-Flag_of_Japan.svg.png"}
@@ -70,7 +73,7 @@ var countryList = [
 	[
 		{Name:"Pakistan",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Flag_of_Pakistan.svg/2000px-Flag_of_Pakistan.svg.png"}, 
 		{Name:"Afghanistan",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Flag_of_Afghanistan.svg/2000px-Flag_of_Afghanistan.svg.png"},
-		{Name:"Islamic Republic of Iran",Played:false,Flag:"http://informedexplorer.com/wp-content/uploads/2013/01/Iran-Flag.gif"}, 
+		{Name:"Iran",Played:false,Flag:"http://informedexplorer.com/wp-content/uploads/2013/01/Iran-Flag.gif"}, 
 		{Name:"Myanmar",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Flag_of_Myanmar.svg/2000px-Flag_of_Myanmar.svg.png"},
 		{Name:"Bolivia",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Flag_of_Bolivia_(state).svg/2000px-Flag_of_Bolivia_(state).svg.png"}, 
 		{Name:"Sudan",Played:false,Flag:"https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Flag_of_Sudan.svg/2000px-Flag_of_Sudan.svg.png"}, 
@@ -245,6 +248,18 @@ function getLocation(x,y, $scope, $http)
 
 function checkAndUpdate(selection, $scope, $http)
 {
+	if (curCountry["Name"] == "South Africa")
+	{
+		curCountry = sAStandIn;
+	}
+	else if (curCountry["Name"] == "Iran")
+	{
+		curCountry = iStandIn; 
+	}
+	else if (curCountry["Name"] == "Russia")
+	{
+		curCountry = rStandIn; 
+	}
 	var right = false; 
 	$scope.$apply(function () {
 	if (selection == curCountry["Name"])
@@ -323,7 +338,7 @@ function addPoint()
 	{
 		points = points + 3; 
 	}	
-	else if (level = 4)
+	else if (level == 4)
 	{
 		points = points + 4; 
 	}

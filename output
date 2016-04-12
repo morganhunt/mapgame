@@ -1,0 +1,94 @@
+nohup: ignoring input
+[0mGET /game.html? [32m200 [0m8.465 ms - 2444[0m
+[0mGET /stylesheets/gameStyle.css [32m200 [0m3.373 ms - 3166[0m
+[0mGET /javascripts/gameScript.js [32m200 [0m3.738 ms - 13979[0m
+[0mGET /favicon.ico [33m404 [0m367.746 ms - 1578[0m
+[0mGET /game.html? [36m304 [0m1.770 ms - -[0m
+[0mGET /javascripts/gameScript.js [36m304 [0m1.159 ms - -[0m
+[0mGET /stylesheets/gameStyle.css [36m304 [0m1.220 ms - -[0m
+[0mGET /game.html? [36m304 [0m0.388 ms - -[0m
+[0mGET /javascripts/gameScript.js [36m304 [0m0.325 ms - -[0m
+[0mGET /stylesheets/gameStyle.css [36m304 [0m0.379 ms - -[0m
+[0mGET /game.html [32m200 [0m0.732 ms - 2444[0m
+[0mGET /javascripts/gameScript.js [32m200 [0m0.699 ms - 13979[0m
+[0mGET /stylesheets/gameStyle.css [32m200 [0m2.250 ms - 3166[0m
+[0mGET /favicon.ico [33m404 [0m44.899 ms - 1578[0m
+[0mGET /game.html? [36m304 [0m0.896 ms - -[0m
+[0mGET /javascripts/gameScript.js [36m304 [0m0.903 ms - -[0m
+[0mGET /stylesheets/gameStyle.css [36m304 [0m0.575 ms - -[0m
+[0mPOST /players [32m200 [0m46.323 ms - 67[0m
+In highscore route
+[ { score: 58, name: 'Mark', _id: 5709d24e5ff54cc9623c52a6 },
+  { score: 58, name: 'Mark', _id: 570b296649f4538a01f5a6e5 },
+  { score: 50,
+    name: 'Mr. Handsome',
+    _id: 570aa2e779298c0c70700039 },
+  { score: 18, name: 'Mark', _id: 5709d930441e2c4f65380e73 },
+  { score: 11, name: 'John lewis', _id: 5709c90a47d122bd614afe9d },
+  { score: 7, name: 'Mark', _id: 570aacd7f688f1a77215b9f1 },
+  { score: 7, name: 'Mark', _id: 570b0a3f0d1fd1bf7e8109ee },
+  { score: 2, name: 'Mark', _id: 5709af9438dc3ed1565989a7 },
+  { score: 2, name: 'Mark', _id: 5709b089fcb63925579af545 },
+  { score: 2, name: 'Mark', _id: 5709e90218ccd3f16ad9b531 } ]
+[0mGET /highscores [32m200 [0m23.337 ms - 610[0m
+[0mPOST /players [32m200 [0m4.355 ms - 53[0m
+In highscore route
+[ { score: 58, name: 'Mark', _id: 5709d24e5ff54cc9623c52a6 },
+  { score: 58, name: 'Mark', _id: 570b296649f4538a01f5a6e5 },
+  { score: 50,
+    name: 'Mr. Handsome',
+    _id: 570aa2e779298c0c70700039 },
+  { score: 18, name: 'Mark', _id: 5709d930441e2c4f65380e73 },
+  { score: 13, _id: 570b297049f4538a01f5a6e6 },
+  { score: 11, name: 'John lewis', _id: 5709c90a47d122bd614afe9d },
+  { score: 7, name: 'Mark', _id: 570aacd7f688f1a77215b9f1 },
+  { score: 7, name: 'Mark', _id: 570b0a3f0d1fd1bf7e8109ee },
+  { score: 2, name: 'Mark', _id: 5709af9438dc3ed1565989a7 },
+  { score: 2, name: 'Mark', _id: 5709b089fcb63925579af545 } ]
+[0mGET /highscores [32m200 [0m8.500 ms - 597[0m
+[0mGET /game.html [36m304 [0m0.609 ms - -[0m
+[0mGET /stylesheets/gameStyle.css [36m304 [0m0.701 ms - -[0m
+[0mGET /javascripts/gameScript.js [36m304 [0m0.960 ms - -[0m
+[0mGET /game.html? [36m304 [0m0.441 ms - -[0m
+[0mGET /stylesheets/gameStyle.css [36m304 [0m0.905 ms - -[0m
+[0mGET /javascripts/gameScript.js [36m304 [0m1.117 ms - -[0m
+[0mPOST /players [32m200 [0m5.441 ms - 52[0m
+In highscore route
+[ { score: 58, name: 'Mark', _id: 5709d24e5ff54cc9623c52a6 },
+  { score: 58, name: 'Mark', _id: 570b296649f4538a01f5a6e5 },
+  { score: 50,
+    name: 'Mr. Handsome',
+    _id: 570aa2e779298c0c70700039 },
+  { score: 18, name: 'Mark', _id: 5709d930441e2c4f65380e73 },
+  { score: 13, _id: 570b297049f4538a01f5a6e6 },
+  { score: 11, name: 'John lewis', _id: 5709c90a47d122bd614afe9d },
+  { score: 7, name: 'Mark', _id: 570aacd7f688f1a77215b9f1 },
+  { score: 7, name: 'Mark', _id: 570b0a3f0d1fd1bf7e8109ee },
+  { score: 7, _id: 570b29d849f4538a01f5a6e7 },
+  { score: 2, name: 'Mark', _id: 5709af9438dc3ed1565989a7 } ]
+[0mGET /highscores [32m200 [0m8.750 ms - 583[0m
+[0mGET /game.html [36m304 [0m0.653 ms - -[0m
+[0mGET /javascripts/gameScript.js [36m304 [0m0.379 ms - -[0m
+[0mGET /stylesheets/gameStyle.css [36m304 [0m0.514 ms - -[0m
+[0mGET /game.html? [36m304 [0m0.835 ms - -[0m
+[0mGET /javascripts/gameScript.js [36m304 [0m0.323 ms - -[0m
+[0mGET /stylesheets/gameStyle.css [36m304 [0m0.344 ms - -[0m
+[0mGET /stylesheets/gameStyle.css [36m304 [0m1.323 ms - -[0m
+In highscore route
+[0mPOST /players [32m200 [0m5.264 ms - 53[0m
+[ { score: 58, name: 'Mark', _id: 5709d24e5ff54cc9623c52a6 },
+  { score: 58, name: 'Mark', _id: 570b296649f4538a01f5a6e5 },
+  { score: 50,
+    name: 'Mr. Handsome',
+    _id: 570aa2e779298c0c70700039 },
+  { score: 18, name: 'Mark', _id: 5709d930441e2c4f65380e73 },
+  { score: 18, _id: 570b2a7f49f4538a01f5a6e8 },
+  { score: 13, _id: 570b297049f4538a01f5a6e6 },
+  { score: 11, name: 'John lewis', _id: 5709c90a47d122bd614afe9d },
+  { score: 7, name: 'Mark', _id: 570aacd7f688f1a77215b9f1 },
+  { score: 7, name: 'Mark', _id: 570b0a3f0d1fd1bf7e8109ee },
+  { score: 7, _id: 570b29d849f4538a01f5a6e7 } ]
+[0mGET /highscores [32m200 [0m15.694 ms - 570[0m
+[0mGET /game.html [36m304 [0m0.429 ms - -[0m
+[0mGET /javascripts/gameScript.js [36m304 [0m0.362 ms - -[0m
+[0mGET /stylesheets/gameStyle.css [36m304 [0m0.674 ms - -[0m
